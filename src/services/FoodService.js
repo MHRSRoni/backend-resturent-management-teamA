@@ -56,6 +56,23 @@ exports.CreateFood = async (req) => {
     }
 };
 
+//!Read Food By Slug
+exports.ReadFood = async (req) => {
+    try {
+        const food = await FoodModel.findOne({ slug: req.params.slug });
+
+        if (!food) {
+            return { status: 'fail', error: 'Food not found' };
+        }
+
+        return { status: 'success', data: food }
+
+    } catch (error) {
+        console.log(error);
+        return { status: 'fail', error: 'Something went wrong' }
+    }
+};
+
 //!Update a Food By Slug
 exports.UpdateFood = async (req) => {
     try {

@@ -1,7 +1,13 @@
-const { CreateFood, UpdateFood, DeleteFood, AllFoods } = require("../services/FoodService")
+const { CreateFood, UpdateFood, DeleteFood, AllFoods, ReadFood } = require("../services/FoodService")
 
 exports.CreateFood = async (req, res) => {
     const result = await CreateFood(req);
+
+    res.status(200).json(result);
+};
+
+exports.ReadFood = async (req, res) => {
+    const result = await ReadFood(req);
 
     res.status(200).json(result);
 };
