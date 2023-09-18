@@ -4,6 +4,12 @@ const DataSchema = new Schema({
     title: {
         type: String,
         required: true,
+        unique: true
+    },
+    slug: {
+        type: String,
+        required: true,
+        lowercase: true
     },
     category: {
         type: String,
@@ -23,10 +29,7 @@ const DataSchema = new Schema({
     },
     calaory: {
         type: String,
-    },
-    discount: {
-        type: Boolean,
-        default: false
+        required: true
     },
     discount_price: {
         type: String,
@@ -34,7 +37,6 @@ const DataSchema = new Schema({
     }
 
 }, { timestamps: true, versionKey: false });
-
 
 const FoodModel = model('foods', DataSchema);
 
