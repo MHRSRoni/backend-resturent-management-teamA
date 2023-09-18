@@ -20,9 +20,9 @@ const DataSchema = new Schema({
         required: true,
         trim: true
     },
-    image: {
+    images: [{
         type: String,
-    },
+    }],
     price: {
         type: String,
         required: true
