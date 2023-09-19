@@ -1,3 +1,4 @@
+
 const { CreateFood, UpdateFood, DeleteFood, AllFoods, ReadFood, SearchByCategory, SearchByTitle } = require("../services/FoodService")
 
 exports.CreateFood = async (req, res) => {
@@ -28,6 +29,7 @@ exports.AllFoods = async (req, res) => {
     const result = await AllFoods(req);
 
     res.status(200).json(result);
+
 };
 
 
