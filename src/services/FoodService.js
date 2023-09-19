@@ -56,6 +56,23 @@ exports.CreateFood = async (req) => {
     }
 };
 
+//!Read Food By Slug
+exports.ReadFood = async (req) => {
+    try {
+        const food = await FoodModel.findOne({ slug: req.params.slug });
+
+        if (!food) {
+            return { status: 'fail', error: 'Food not found' };
+        }
+
+        return { status: 'success', data: food }
+
+    } catch (error) {
+        console.log(error);
+        return { status: 'fail', error: 'Something went wrong' }
+    }
+};
+
 //!Update a Food By Slug
 exports.UpdateFood = async (req) => {
     try {
@@ -139,5 +156,45 @@ exports.AllFoods = async (req) => {
     } catch (error) {
         console.log(error);
         return { status: 'fail', error: 'Something went wrong' };
+    }
+};
+
+
+
+//!Search By Category
+exports.SearchByCategory = async (req) => {
+    try {
+        const { category } = req.body;
+
+        const food = await FoodModel.find({ category });
+
+        if (food.length === 0) {
+            return { status: 'fail', error: 'Food not found' };
+        }
+
+        return { status: 'Success', data: food }
+
+    } catch (error) {
+        console.log(error);
+        return { status: 'fail', error: 'Something went wrong' }
+    }
+};
+
+//!Search By Title
+exports.SearchByTitle = async (req) => {
+    try {
+        const { title } = req.body;
+
+        const food = await FoodModel.find({ title });
+
+        if (food.length === 0) {
+            return { status: 'fail', error: 'Food not found' };
+        }
+
+        return { status: 'Success', data: food }
+
+    } catch (error) {
+        console.log(error);
+        return { status: 'fail', error: 'Something went wrong' }
     }
 };
