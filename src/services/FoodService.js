@@ -59,7 +59,7 @@ exports.CreateFood = async (req) => {
 //!Read Food By Slug
 exports.ReadFood = async (req) => {
     try {
-        const food = await FoodModel.findOne({ slug: req.params.slug });
+        const food = await FoodModel.findOne({ _id: req.params.id });
 
         if (!food) {
             return { status: 'fail', error: 'Food not found' };
@@ -86,7 +86,7 @@ exports.UpdateFood = async (req) => {
             discount_price
         } = req.body;
 
-        const food = await FoodModel.findOne({ slug: req.params.slug });
+        const food = await FoodModel.findOne({ _id: req.params.id });
 
         if (!food) {
             return { status: 'fail', error: 'Food not found' }
@@ -125,7 +125,7 @@ exports.UpdateFood = async (req) => {
 //!Delete a Food By Slug
 exports.DeleteFood = async (req) => {
     try {
-        const food = await FoodModel.findOne({ slug: req.params.slug })
+        const food = await FoodModel.findOne({ _id: req.params.id })
 
         if (!food) {
             return { status: 'fail', error: 'Food not found' }
