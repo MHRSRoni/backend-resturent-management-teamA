@@ -7,12 +7,12 @@ const router = require('express').Router();
 router.post('/create-food', CreateFood);
 
 
-router.get('/food/:slug', ReadFood);
+router.get('/food/:id', ReadFood);
 
 
-router.post('/update-food/:slug', UpdateFood);
+router.post('/update-food/:id', UpdateFood);
 
-router.delete('/delete-food/:slug', DeleteFood);
+router.delete('/delete-food/:id', DeleteFood);
 
 router.get('/foods', AllFoods);
 
