@@ -33,6 +33,12 @@ exports.CreateFood = async (req) => {
             return { status: 'fail', error: 'Price is required' };
         }
 
+        const existingTitle = await FoodModel.findOne({ title })
+
+        if (existingTitle) {
+            return { status: 'fail', error: 'Title already exists' }
+        }
+
         const food = await FoodModel.create({
             title,
             slug: slugify(title),
@@ -56,7 +62,7 @@ exports.CreateFood = async (req) => {
     }
 };
 
-//!Read Food By Slug
+//!Read Food By Id
 exports.ReadFood = async (req) => {
     try {
         const food = await FoodModel.findOne({ _id: req.params.id });
@@ -73,7 +79,7 @@ exports.ReadFood = async (req) => {
     }
 };
 
-//!Update a Food By Slug
+//!Update a Food By Id
 exports.UpdateFood = async (req) => {
     try {
         const {
@@ -122,7 +128,7 @@ exports.UpdateFood = async (req) => {
 
 };
 
-//!Delete a Food By Slug
+//!Delete a Food By Id
 exports.DeleteFood = async (req) => {
     try {
         const food = await FoodModel.findOne({ _id: req.params.id })
@@ -147,12 +153,33 @@ exports.DeleteFood = async (req) => {
 };
 
 //!All Foods
-exports.AllFoods = async (req) => {
+exports.AllFoods = async () => {
     try {
         const foods = await FoodModel.find();
 
         return { status: 'Success', data: foods }
 
+    } catch (error) {
+        console.log(error);
+        return { status: 'fail', error: 'Something went wrong' };
+    }
+};
+
+//!Foods For Page
+exports.FoodForPage = async (req) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 8;
+
+        const skip = (page - 1) * pageSize;
+
+        const data = await FoodModel.find().skip(skip).limit(pageSize);
+
+        if (data?.length === 0) {
+            return { status: 'fail', error: 'Food not found' };
+        }
+
+        return { status: 'Success', data: data }
     } catch (error) {
         console.log(error);
         return { status: 'fail', error: 'Something went wrong' };
