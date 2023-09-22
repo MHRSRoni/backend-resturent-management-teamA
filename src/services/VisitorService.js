@@ -1,6 +1,7 @@
 const VisitorModel = require("../models/VisitorModel");
 
 
+//!Visitor Counter
 exports.VisitorCount = async () => {
     try {
         const data = await VisitorModel.findOneAndUpdate(
@@ -16,6 +17,6 @@ exports.VisitorCount = async () => {
 
     } catch (error) {
         console.log(error);
-        return { status: 'failed', error: 'Something went wrong' }
+        return { status: 'fail', error: 'Something went wrong' }
     }
 };
