@@ -1,0 +1,300 @@
+{
+	"info": {
+		"_postman_id": "dc6234a9-2b9c-4bcd-b4e8-c1fe0024caca",
+		"name": "Food Restaurant Team A",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21752380"
+	},
+	"item": [
+		{
+			"name": "Foods",
+			"item": [
+				{
+					"name": "Create a new Food",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"4th Food\",\r\n    \"category\": \"daily special\",\r\n    \"description\": \"This is description\",\r\n    \"image\": \"test\",\r\n    \"calaory\": \"150\",\r\n    \"price\": \"500\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/create-food",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"create-food"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Food By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test1\",\r\n    \"category\": \"test\",\r\n    \"description\": \"test\",\r\n    \"image\": \"test\",\r\n    \"calaory\": \"test\",\r\n    \"price\": \"10\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/food/650c0d8e24f1eca69c246731",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"food",
+								"650c0d8e24f1eca69c246731"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Food By Id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test Test\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/update-food/650c0d8e24f1eca69c246731",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"update-food",
+								"650c0d8e24f1eca69c246731"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Food By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test Test\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/delete-food/test1",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"delete-food",
+								"test1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Foods",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test Test\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/foods",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"foods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Foods For Page",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test Test\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/food?page=3&pageSize=2",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"food"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search By Category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"veg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/search-food-by-category",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"search-food-by-category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search By Title",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"First Food\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/search-food-by-title",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"search-food-by-title"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Visitors",
+			"item": [
+				{
+					"name": "Visitors Count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/visitor-count",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"visitor-count"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseUrl",
+			"value": "https://backend-resturent-team-a.onrender.com/api/v1",
+			"type": "string"
+		}
+	]
+}
