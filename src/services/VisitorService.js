@@ -9,7 +9,7 @@ exports.VisitorCount = async () => {
             { new: true });
 
         if (!data) {
-            return { status: 'fail', error: 'Information not found' };
+            return { status: 'fail', error: 'Visitor not found' };
         }
 
         return { status: 'Success', data: data };
