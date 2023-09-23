@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"4th Food\",\r\n    \"category\": \"daily special\",\r\n    \"description\": \"This is description\",\r\n    \"image\": \"test\",\r\n    \"calaory\": \"150\",\r\n    \"price\": \"500\"\r\n\r\n}",
+							"raw": "{\r\n    \"title\": \"18th Food\",\r\n    \"category\": \"deals\",\r\n    \"description\": \"This is description\",\r\n    \"image\": \"test\",\r\n    \"calaory\": \"150\",\r\n    \"price\": \"500\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,7 +72,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Test Test\"\r\n\r\n}",
+							"raw": "{\r\n    \"title\": \"First Food\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -80,13 +80,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseUrl}}/update-food/650c0d8e24f1eca69c246731",
+							"raw": "{{BaseUrl}}/update-food/650c0d4b24f1eca69c24672f",
 							"host": [
 								"{{BaseUrl}}"
 							],
 							"path": [
 								"update-food",
-								"650c0d8e24f1eca69c246731"
+								"650c0d4b24f1eca69c24672f"
 							]
 						}
 					},
@@ -129,7 +129,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Test Test\"\r\n\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -149,45 +149,6 @@
 					"response": []
 				},
 				{
-					"name": "Foods For Page",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Test Test\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BaseUrl}}/food?page=3&pageSize=2",
-							"host": [
-								"{{BaseUrl}}"
-							],
-							"path": [
-								"food"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "3"
-								},
-								{
-									"key": "pageSize",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Search By Category",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -197,7 +158,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"category\": \"veg\"\r\n}",
+							"raw": "{\r\n        \"category\": \"drinks\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
