@@ -153,57 +153,82 @@ exports.DeleteFood = async (req) => {
 };
 
 //!All Foods
-exports.AllFoods = async () => {
-    try {
-        const foods = await FoodModel.find();
-
-        return { status: 'Success', data: foods }
-
-    } catch (error) {
-        console.log(error);
-        return { status: 'fail', error: 'Something went wrong' };
-    }
-};
-
-//!Foods For Page
-exports.FoodForPage = async (req) => {
+exports.AllFoods = async (req) => {
     try {
         const page = parseInt(req.query.page) || 1;
-        const pageSize = parseInt(req.query.pageSize) || 8;
+        const limit = parseInt(req.query.limit) || 12;
 
-        const skip = (page - 1) * pageSize;
+        const allFood = await FoodModel.find();
 
-        const data = await FoodModel.find().skip(skip).limit(pageSize);
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
 
-        if (data?.length === 0) {
-            return { status: 'fail', error: 'Food not found' };
+        const results = {};
+
+        results.totalFood = allFood.length;
+        results.pageCount = Math.ceil(allFood.length / limit);
+
+        if (endIndex < allFood.length) {
+            results.next = {
+                page: page + 1,
+                limit: limit
+            }
+
         }
+        if (startIndex > 0) {
+            results.prev = {
+                page: page - 1,
+                limit: limit
+            }
+        }
+        results.resultFoods = allFood.slice(startIndex, endIndex)
 
-        return { status: 'Success', data: data }
+        return { status: 'Success', data: results }
+
     } catch (error) {
         console.log(error);
         return { status: 'fail', error: 'Something went wrong' };
     }
+
 };
-
-
 
 //!Search By Category
 exports.SearchByCategory = async (req) => {
     try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 12;
+
         const { category } = req.body;
 
-        const food = await FoodModel.find({ category });
+        const allFood = await FoodModel.find({ category });
 
-        if (food.length === 0) {
-            return { status: 'fail', error: 'Food not found' };
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
+
+        const results = {};
+
+        results.totalFood = allFood.length;
+        results.pageCount = Math.ceil(allFood.length / limit);
+
+        if (endIndex < allFood.length) {
+            results.next = {
+                page: page + 1,
+                limit: limit
+            }
         }
+        if (startIndex > 0) {
+            results.prev = {
+                page: page - 1,
+                limit: limit
+            }
+        }
+        results.resultFoods = allFood.slice(startIndex, endIndex);
 
-        return { status: 'Success', data: food }
+        return { status: 'Success', data: results }
 
     } catch (error) {
         console.log(error);
-        return { status: 'fail', error: 'Something went wrong' }
+        return { status: 'fail', error: 'Something went wrong' };
     }
 };
 

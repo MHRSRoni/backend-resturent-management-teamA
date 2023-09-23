@@ -1,4 +1,5 @@
-const { CreateFood, UpdateFood, DeleteFood, AllFoods, ReadFood, SearchByCategory, SearchByTitle, FoodForPage, VisitorCount } = require('../controllers/FoodController');
+const { CreateFood, UpdateFood, DeleteFood, AllFoods, ReadFood, SearchByCategory, SearchByTitle, FoodForPage } = require('../controllers/FoodController');
+const { VisitorCount } = require('../controllers/InfoController');
 
 
 const router = require('express').Router();

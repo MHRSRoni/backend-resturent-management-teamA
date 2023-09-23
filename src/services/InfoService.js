@@ -1,12 +1,12 @@
-const VisitorModel = require("../models/VisitorModel");
+const InfoModel = require("../models/InfoModel");
 
 //!Visitir Counter
 exports.VisitorCount = async () => {
     try {
-        const data = await VisitorModel.findOneAndUpdate(
+        const data = await InfoModel.findOneAndUpdate(
             {},
             { $inc: { visitorCount: 1 } },
-            { visitorCount: true });
+            { new: true });
 
         if (!data) {
             return { status: 'fail', error: 'Visitor not found' };
