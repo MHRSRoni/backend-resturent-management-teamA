@@ -153,7 +153,7 @@ exports.DeleteFood = async (req) => {
 };
 
 //!All Foods
-exports.AllFoods = async (req) => {
+exports.AllFoods = async () => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 12;
@@ -191,6 +191,8 @@ exports.AllFoods = async (req) => {
     }
 
 };
+
+
 
 //!Search By Category
 exports.SearchByCategory = async (req) => {

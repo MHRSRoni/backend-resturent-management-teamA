@@ -1,6 +1,6 @@
 const InfoModel = require("../models/InfoModel");
 
-//!Visitir Counter
+//!Visitor Counter
 exports.VisitorCount = async () => {
     try {
         const data = await InfoModel.findOneAndUpdate(
