@@ -1,5 +1,5 @@
-const { CreateFood, UpdateFood, DeleteFood, AllFoods, ReadFood, SearchByCategory, SearchByTitle, FoodForPage, VisitorCount } = require('../controllers/FoodController');
-
+const { CreateFood, UpdateFood, DeleteFood, AllFoods, ReadFood, SearchByCategory, SearchByTitle } = require('../controllers/FoodController');
+const { VisitorCount } = require('../services/InfoService');
 
 const router = require('express').Router();
 
@@ -15,9 +15,6 @@ router.post('/update-food/:id', UpdateFood);
 router.delete('/delete-food/:id', DeleteFood);
 
 router.get('/foods', AllFoods);
-
-router.get('/food', FoodForPage);
-
 
 
 //!Search Food Routes

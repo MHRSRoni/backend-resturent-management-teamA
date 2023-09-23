@@ -7,6 +7,6 @@ const DataSchema = new Schema({
     }
 }, { timestamps: true, versionKey: false })
 
-const VisitorModel = model('visitors', DataSchema);
+const InfoModel = model('visitors', DataSchema);
 
-module.exports = VisitorModel;
+module.exports = InfoModel;
