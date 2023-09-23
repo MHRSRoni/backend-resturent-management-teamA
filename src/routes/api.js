@@ -6,9 +6,7 @@ const router = require('express').Router();
 //!Food Crud Routes
 router.post('/create-food', CreateFood);
 
-
 router.get('/food/:id', ReadFood);
-
 
 router.post('/update-food/:id', UpdateFood);
 
