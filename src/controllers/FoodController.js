@@ -32,13 +32,6 @@ exports.AllFoods = async (req, res) => {
 
 };
 
-exports.FoodForPage = async (req, res) => {
-    const result = await FoodForPage(req);
-
-    res.status(200).json(result);
-
-};
-
 
 //!SEARCH
 
