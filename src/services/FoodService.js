@@ -157,12 +157,25 @@ exports.AllFoods = async (req) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 12;
-
-        const allFood = await FoodModel.find();
+      
+        const allFood = await FoodModel.find().count();
 
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
 
+        const allFoods = await FoodModel.find().skip(startIndex).limit(limit);
+
+        const results = {};
+
+        results.totalFood = allFood
+        results.pageCount = Math.ceil(allFood / limit);
+
+        if (endIndex < allFood) {
+            results.next = {
+                page: page + 1,
+                limit: limit
+            }
+          
         const results = {};
 
         results.totalFood = allFood.length;
@@ -173,7 +186,6 @@ exports.AllFoods = async (req) => {
                 page: page + 1,
                 limit: limit
             }
-
         }
         if (startIndex > 0) {
             results.prev = {
@@ -181,7 +193,8 @@ exports.AllFoods = async (req) => {
                 limit: limit
             }
         }
-        results.resultFoods = allFood.slice(startIndex, endIndex)
+          
+        results.resultFoods = allFoods
 
         return { status: 'Success', data: results }
 
@@ -202,17 +215,26 @@ exports.SearchByCategory = async (req) => {
 
         const { category } = req.body;
 
-        const allFood = await FoodModel.find({ category });
+        const allFood = await FoodModel.find({ category }).count();
 
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
+      
+        const allFoods = await FoodModel.find({ category })
+            .skip(startIndex)
+            .limit(limit)
 
         const results = {};
 
-        results.totalFood = allFood.length;
-        results.pageCount = Math.ceil(allFood.length / limit);
+        results.totalFood = allFood;
+        results.pageCount = Math.ceil(allFood / limit);
+          
+        const results = {};
 
-        if (endIndex < allFood.length) {
+        results.totalFood = allFood;
+        results.pageCount = Math.ceil(allFood / limit);
+
+        if (endIndex < allFood) {
             results.next = {
                 page: page + 1,
                 limit: limit
@@ -224,7 +246,8 @@ exports.SearchByCategory = async (req) => {
                 limit: limit
             }
         }
-        results.resultFoods = allFood.slice(startIndex, endIndex);
+      
+        results.resultFoods = allFoods;
 
         return { status: 'Success', data: results }
 
@@ -238,14 +261,42 @@ exports.SearchByCategory = async (req) => {
 exports.SearchByTitle = async (req) => {
     try {
         const { title } = req.body;
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 12;
 
-        const food = await FoodModel.find({ title });
+        const allFood = await FoodModel.find({ title }).count();
 
-        if (food.length === 0) {
+
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
+
+        const allFoods = await FoodModel.find({ title }).skip(startIndex).limit(limit);
+
+        const results = {}
+
+        results.totalFood = allFood;
+        results.pageCount = Math.ceil(allFood / limit);
+
+        if (endIndex < allFood) {
+            results.next = {
+                page: page + 1,
+                limit: limit
+            }
+        }
+        if (startIndex > 0) {
+            results.prev = {
+                page: page - 1,
+                limit: limit
+            }
+        }
+        results.resultFoods = allFoods;
+
+
+        if (allFood.length === 0) {
             return { status: 'fail', error: 'Food not found' };
         }
 
-        return { status: 'Success', data: food }
+        return { status: 'Success', data: results }
 
     } catch (error) {
         console.log(error);
